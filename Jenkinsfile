@@ -52,17 +52,17 @@ pipeline {
      }
    }
 
-  stage("Test on Debian") {
+   stage("Test on Debian") {
   
-   agent {
+     agent {
 	label 'docker 'openjdk:8u121-jre'
-   }
+     }
   
-   steps {
+     steps {
 	sh "wget http://ec2-52-221-220-112.ap-southeast-1.compute.amazonaws.com/rectangles/all/rectangle_${env.BUILD_NUMBER}.jar"
         sh "java -jar rectangle_${env.BUILD_NUMBER}.jar 3 4"
+     }
    }
-  }
 
-  }
+ }
 }
