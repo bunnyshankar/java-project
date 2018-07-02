@@ -110,24 +110,25 @@ pipeline {
      }
      post {
         success {
-                emailext {
+                emailext (
                         subject: "${env.JOB_NAME} [${env.BUILD_NUMBER}] Development promoted to master!",
                         body: """<p>'${env.JOB_NAME} [${env.BUILD_NUMBER}]' Devemoplemt promoted to master!":</p><p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
                         to: "bunny.shankar@gmail.com"
-                }
+                )
         }
      }
 
    }
+
+ }
+
    post {
 	failure {
-		emailext {
+		emailext (
 			subject: "${env.JOB_NAME} [${env.BUILD_NUMBER}] failed!",
 			body: """<p>'${env.JOB_NAME} [${env.BUILD_NUMBER}]' Failed!":</p><p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
 			to: "bunny.shankar@gmail.com"
-		}
+		)
 	}
    }
-
- }
 }
